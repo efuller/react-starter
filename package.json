@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "yarn webpack-dev-server -- --env.env=dev",
-    "webpack-dev-server": "webpack-dev-server --hot"
+    "webpack-dev-server": "webpack-dev-server"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

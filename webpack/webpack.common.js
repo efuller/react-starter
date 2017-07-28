@@ -1,10 +1,10 @@
-const commonPaths = require('./webpack.paths');
+const commonPaths = require('./common-paths');
 const ProgressBar = require('progress-bar-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
 
-	entry: "./src/",
+	entry: './src/',
 	output: {
 		filename: 'bundle.js',
 		path: commonPaths.outputPath
@@ -14,7 +14,7 @@ const config = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: "babel-loader"
+				loader: 'babel-loader'
 			}
 		]
 	},
