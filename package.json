@@ -5,7 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "start": "yarn build && NODE_ENV=production node server.js",
+    "build": "yarn webpack -- --env.env=prod",
+    "webpack": "webpack",
     "dev": "yarn webpack-dev-server -- --env.env=dev",
     "webpack-dev-server": "webpack-dev-server"
   },
@@ -31,6 +33,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "express": "^4.15.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
