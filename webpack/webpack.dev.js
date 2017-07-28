@@ -3,10 +3,23 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.css/,
+				test: /\.scss/,
 				use: [
-					'style-loader',
-					'css-loader'
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
 				]
 			}
 		]
