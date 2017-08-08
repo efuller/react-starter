@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Routes from './routes';
+import Header from './components/Header';
 
-import Main from './components/Main';
+class App extends Component {
+	constructor(props) {
+		super(props);
 
-const App = () => (
-	<Main />
-);
+		this.state = {
+			user: 'Eric'
+		};
+	}
+
+	render() {
+		return (
+			<div className="app-container">
+				<Header />
+				<Routes />
+			</div>
+		);
+	}
+}
 
 export default App;
