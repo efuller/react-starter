@@ -23,7 +23,10 @@ class LoginForm extends Component {
 		AuthService.login(this.state)
 			.then((res) => {
 				this.setState({ loggedIn: true, userInfo: res });
-				this.props.updateUserInfo(this.state.userInfo);
+				this.props.updateUserInfo({
+					userInfo: this.state.userInfo,
+					loggedIn: this.state.loggedIn
+				});
 			})
 			.catch((err) => {
 				console.log(err);
