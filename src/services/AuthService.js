@@ -4,10 +4,24 @@ import setAuthorizationToken from '../utils/SetAuthorizationToken';
 class AuthService {
 	static login(data) {
 		return Axios.post('http://localhost:3001/auth/login', data).then((res) => {
-			const token = res.data.token;
+			// Extract out the token.
+			const token = res.data.user.token;
+
+			// Save it to local storage.
 			localStorage.setItem('jwtToken', token);
+
+			// Set Authorization header.
 			setAuthorizationToken(token);
+
+			// Return user data.
 			return res.data;
+		});
+	}
+
+	static getUserInfo(token) {
+		setAuthorizationToken(token);
+		return Axios.get('http://localhost:3001/api/v1/user/me').then((res) => {
+			return res.data.user;
 		});
 	}
 
