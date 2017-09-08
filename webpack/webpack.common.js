@@ -33,6 +33,12 @@ const config = {
 						options: {
 							sourceMap: true
 						}
+					},
+					{
+						loader: 'sass-resources-loader',
+						options: {
+							resources: './src/scss/**/*.scss'
+						}
 					}
 				]
 			}
