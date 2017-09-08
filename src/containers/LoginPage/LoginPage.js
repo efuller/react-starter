@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ContextProvider from '../../utils/ContextProvider';
 
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = (props, context) => (
-	<div>
+	<div className="row row-1180">
 		<h1>Login Page</h1>
-		<LoginForm location={props.location} updateUserInfo={context.updateUserInfo} />
+		<ContextProvider>
+			<LoginForm location={props.location} updateUserInfo={context.updateUserInfo} />
+		</ContextProvider>
 	</div>
 );
 
@@ -19,12 +22,12 @@ LoginPage.propTypes = {
 LoginPage.defaultProps = {
 	location: null
 };
-
-LoginPage.contextTypes = {
-	userInfo: PropTypes.shape({
-		name: PropTypes.string
-	}),
-	updateUserInfo: PropTypes.func
-};
+//
+// LoginPage.contextTypes = {
+// 	userInfo: PropTypes.shape({
+// 		name: PropTypes.string
+// 	}),
+// 	updateUserInfo: PropTypes.func
+// };
 
 export default LoginPage;

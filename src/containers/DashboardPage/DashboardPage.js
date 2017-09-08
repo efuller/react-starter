@@ -9,9 +9,12 @@ const Test = (props) => {
 };
 
 const DashboardPage = () => (
-	<ContextProvider>
-		<Test />
-	</ContextProvider>
+	<div className="row row-1180">
+		<h1>Dashboard</h1>
+		<ContextProvider>
+			<Test />
+		</ContextProvider>
+	</div>
 );
 
 export default DashboardPage;

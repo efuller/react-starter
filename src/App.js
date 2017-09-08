@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Routes from './routes';
-import Header from './components/Header';
+import Header from './components/Header/Header';
+import ContextProvider from './utils/ContextProvider';
 
 class App extends Component {
 	constructor(props) {
@@ -13,8 +14,10 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="app-container">
-				<Header />
+			<div className="app">
+				<ContextProvider>
+					<Header />
+				</ContextProvider>
 				<Routes />
 			</div>
 		);
