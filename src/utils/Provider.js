@@ -8,34 +8,44 @@ class Provider extends Component {
 		super(props);
 
 		this.state = {
+			loading: true,
 			user: {},
 			loggedIn: false
 		};
 
 		this.amILoggedIn = this.amILoggedIn.bind(this);
+		this.updateUserInfo = this.updateUserInfo.bind(this);
 	}
 
 	getChildContext() {
 		return {
 			user: this.state.user,
-			loggedIn: this.state.loggedIn
+			loggedIn: this.state.loggedIn,
+			updateUserInfo: this.updateUserInfo,
+			loading: this.state.loading
 		};
 	}
 
 	componentWillMount() {
-		this.amILoggedIn();
-
+		// this.amILoggedIn();
+		this.setState({
+			loading: false,
+			user: {},
+			loggedIn: false
+		});
 		if (AuthService.isUserAuthenticated()) {
 			const token = AuthService.getToken();
 			AuthService.getUserInfo(token)
 				.then((data) => {
 					this.setState({
+						loading: false,
 						user: data,
 						loggedIn: true
 					});
 				})
 				.catch(() => {
 					this.setState({
+						loading: false,
 						user: {},
 						loggedIn: false
 					});
@@ -43,17 +53,27 @@ class Provider extends Component {
 		}
 	}
 
+	updateUserInfo(userInfo) {
+		this.setState({
+			user: userInfo.user,
+			loggedIn: true,
+			loading: false
+		});
+	}
+
 	amILoggedIn() {
 		if (AuthService.isUserAuthenticated()) {
 			return this.setState({
 				user: this.state.user,
-				loggedIn: this.state.loggedIn
+				loggedIn: this.state.loggedIn,
+				loading: false
 			});
 		}
 
 		return this.setState({
 			user: this.state.user,
-			loggedIn: false
+			loggedIn: false,
+			loading: true
 		});
 	}
 
@@ -67,7 +87,8 @@ Provider.childContextTypes = {
 	user: PropTypes.shape({
 		name: PropTypes.string
 	}),
-	// updateUserInfo: PropTypes.func,
+	loading: PropTypes.bool,
+	updateUserInfo: PropTypes.func,
 	loggedIn: PropTypes.bool
 };
 
