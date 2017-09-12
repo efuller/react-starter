@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './scss/user-menu.scss';
 
@@ -14,14 +14,14 @@ const UserNav = props => (
 			{
 				props.loggedIn ?
 					<li className="menu__item">
-						<Link to="/dashboard">Dashboard</Link>
+						<NavLink to="/dashboard" exact activeClassName="link--active">Dashboard</NavLink>
 					</li> : ''
 			}
 			<li className="menu__item">
 				{
 					props.loggedIn ?
 						<button onClick={logout}>Logout</button> :
-						<Link to="/login">Login</Link>
+						<NavLink to="/login" exact activeClassName="link--active">Login</NavLink>
 				}
 			</li>
 		</ul>

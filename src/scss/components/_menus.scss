@@ -1,0 +1,22 @@
+//--------------------------------------------------------------
+// Menus
+//--------------------------------------------------------------
+.menu {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.menu__item {
+
+	a {
+		color: #fff;
+		padding: 15px;
+	}
+
+	a:hover,
+	.link--active {
+		background: #fff;
+		color: #000;
+	}
+}

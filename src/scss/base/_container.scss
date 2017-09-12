@@ -13,7 +13,7 @@
 }
 
 @each $container-width in $container-widths {
-	.container-#{$container-width} {
-		width: #{$container-width}px;
+	.container--#{$container-width} {
+		max-width: #{$container-width}px;
 	}
 }

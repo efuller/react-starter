@@ -1,7 +1,8 @@
 //--------------------------------------------------------------
-// Padding
+// Links
 //--------------------------------------------------------------
-.pad-50-0 {
-	padding-bottom: 50px;
-	padding-top: 50px;
+a,
+a.button {
+	text-decoration: none;
+	transition: background 0.3s, color 0.5s;
 }

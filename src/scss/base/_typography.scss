@@ -4,3 +4,20 @@
 body {
 	font-family: $font-main;
 }
+
+//-----------------------------------------
+// Heading Defaults
+//-----------------------------------------
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-family: $font-main;
+		font-weight: 400;
+		margin-top: 0;
+	}
+}
+
+h1,
+.h1 {
+	font-size: 48px;
+	margin-bottom: 20px;
+}

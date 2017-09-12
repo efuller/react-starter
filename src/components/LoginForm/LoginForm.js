@@ -49,10 +49,10 @@ class LoginForm extends Component {
 				)}
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="email"> Email
-						<input type="text" id="email" name="email" value={email} onChange={this.handleInputChange} />
+						<input type="text" id="email" name="email" className="full-width" value={email} onChange={this.handleInputChange} />
 					</label>
 					<label htmlFor="password"> Password
-						<input type="password" id="password" name="password" value={password} onChange={this.handleInputChange} />
+						<input type="password" id="password" name="password" className="full-width" value={password} onChange={this.handleInputChange} />
 					</label>
 					<input type="submit" value="Login" />
 				</form>

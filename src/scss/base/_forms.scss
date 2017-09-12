@@ -1,0 +1,87 @@
+//--------------------------------------------------------------
+// Forms
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+// Forms
+//--------------------------------------------------------------
+
+button,
+input,
+select,
+textarea {
+	font-size: 100%;
+	margin: 0;
+	vertical-align: baseline;
+}
+
+// Remove the clear x icon in IE
+input[type='text']::-ms-clear,
+input[type='search']::-ms-clear {
+	display: none;
+}
+
+input[type='search'] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box;
+
+	// Corrects inner padding displayed oddly in S5, Chrome on OSX
+	&::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+}
+
+// Corrects inner padding and border displayed oddly in FF3/4
+// www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+input[type='tel'],
+input[type='range'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='time'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='color'],
+textarea {
+	appearance: none;
+	border: 1px solid;
+	border-radius: 0;
+	color: #000;
+	display: block;
+	line-height: 1.2;
+	padding: 15px;
+
+	&:focus {
+		color: #000;
+	}
+
+	&.full-width {
+		width: 100%;
+	}
+}
+
+textarea {
+
+	height: auto;
+	overflow: auto;
+	vertical-align: top;
+	width: 100%
+}
+
+// Labels
+label {
+	display: inline-block;
+	padding-bottom: 5px;
+	width: 100%;
+}
