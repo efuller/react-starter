@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import Routes from './routes';
 import Header from './components/Header/Header';
-import ContextProvider from './utils/ContextProvider';
+import Loading from './components/Common/Loading';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			user: 'Eric'
+			loading: this.props.loading
 		};
 	}
 
 	render() {
 		return (
 			<div className="app">
-				<ContextProvider>
-					<Header />
-				</ContextProvider>
-				<Routes />
+				{
+					this.props.loading ?
+						<Loading /> :
+						<div>
+							<Header loggedIn={this.props.loggedIn} />
+							<Routes />
+						</div>
+				}
 			</div>
 		);
 	}

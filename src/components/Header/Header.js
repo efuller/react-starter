@@ -1,6 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import './header.scss';
 import MainNav from '../Menus/MainMenu';

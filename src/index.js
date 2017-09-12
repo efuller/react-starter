@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import Provider from './utils/Provider';
+import ContextProvider from './utils/ContextProvider';
 import App from './App';
 
 import './scss/styles.scss';
@@ -10,7 +11,9 @@ import './scss/styles.scss';
 ReactDOM.render(
 	<Provider>
 		<BrowserRouter>
-			<App />
+			<ContextProvider>
+				<App />
+			</ContextProvider>
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById('app')
