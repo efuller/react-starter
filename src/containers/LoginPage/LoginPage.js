@@ -5,7 +5,7 @@ import ContextProvider from '../../utils/ContextProvider';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = (props, context) => (
-	<div className="row row-1180">
+	<div className="container container-1180 pad-50-0">
 		<h1>Login Page</h1>
 		<ContextProvider>
 			<LoginForm location={props.location} updateUserInfo={context.updateUserInfo} />

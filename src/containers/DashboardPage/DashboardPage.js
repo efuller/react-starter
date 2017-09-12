@@ -9,7 +9,7 @@ const Test = (props) => {
 };
 
 const DashboardPage = () => (
-	<div className="row row-1180">
+	<div className="container container-1180 pad-50-0">
 		<h1>Dashboard</h1>
 		<ContextProvider>
 			<Test />

@@ -1,18 +1,19 @@
 //--------------------------------------------------------------
-// Rows
+// Container
 //--------------------------------------------------------------
-.row {
+.container {
+	padding: 0 15px;
 	margin: 0 auto;
 }
 
-.row__flex--space-between {
+.container__flex--space-between {
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
 }
 
-@each $row-width in $row-widths {
-	.row-#{$row-width} {
-		width: #{$row-width}px;
+@each $container-width in $container-widths {
+	.container-#{$container-width} {
+		width: #{$container-width}px;
 	}
 }

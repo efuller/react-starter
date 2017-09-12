@@ -13,7 +13,7 @@ class Provider extends Component {
 			loggedIn: false
 		};
 
-		this.amILoggedIn = this.amILoggedIn.bind(this);
+		//this.amILoggedIn = this.amILoggedIn.bind(this);
 		this.updateUserInfo = this.updateUserInfo.bind(this);
 	}
 
@@ -27,12 +27,10 @@ class Provider extends Component {
 	}
 
 	componentWillMount() {
-		// this.amILoggedIn();
 		this.setState({
-			loading: false,
-			user: {},
-			loggedIn: false
+			loading: true
 		});
+
 		if (AuthService.isUserAuthenticated()) {
 			const token = AuthService.getToken();
 			AuthService.getUserInfo(token)
@@ -50,6 +48,10 @@ class Provider extends Component {
 						loggedIn: false
 					});
 				});
+		} else {
+			this.setState({
+				loading: false
+			});
 		}
 	}
 
@@ -61,21 +63,21 @@ class Provider extends Component {
 		});
 	}
 
-	amILoggedIn() {
-		if (AuthService.isUserAuthenticated()) {
-			return this.setState({
-				user: this.state.user,
-				loggedIn: this.state.loggedIn,
-				loading: false
-			});
-		}
-
-		return this.setState({
-			user: this.state.user,
-			loggedIn: false,
-			loading: true
-		});
-	}
+	// amILoggedIn() {
+	// 	if (AuthService.isUserAuthenticated()) {
+	// 		return this.setState({
+	// 			user: this.state.user,
+	// 			loggedIn: this.state.loggedIn,
+	// 			loading: false
+	// 		});
+	// 	}
+	//
+	// 	return this.setState({
+	// 		user: this.state.user,
+	// 		loggedIn: false,
+	// 		loading: true
+	// 	});
+	// }
 
 	render() {
 		const { children } = this.props;
