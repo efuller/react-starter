@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
-	res.sendFile(__dirname, '/dist/index.html');
+	res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
 
 app.listen(port, error => (error ? console.log(error) : console.log('Express is running on port', port)));
