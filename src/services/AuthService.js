@@ -1,11 +1,6 @@
 import Axios from 'axios';
 import setAuthorizationToken from '../utils/SetAuthorizationToken';
 
-const API_URL = process.env.API_URL;
-
-
-
-
 class AuthService {
 	static getAPIURL() {
 		if (process.env.NODE_ENV === 'production') {
