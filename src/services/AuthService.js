@@ -9,7 +9,7 @@ const API_URL = process.env.API_URL;
 class AuthService {
 	static getAPIURL() {
 		if (process.env.NODE_ENV === 'production') {
-			return process.env.API_URL;
+			return 'https://salty-scrubland-53561.herokuapp.com';
 		}
 		return 'http://localhost:3001';
 	}
