@@ -12,8 +12,8 @@ const GlobalMessage = props => (
 );
 
 GlobalMessage.propTypes = {
-	type: PropTypes.string.required,
-	message: PropTypes.string.required
+	type: PropTypes.string.isRequired,
+	message: PropTypes.string.isRequired
 };
 
 GlobalMessage.defaultProps = {

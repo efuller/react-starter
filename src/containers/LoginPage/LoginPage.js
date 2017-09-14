@@ -22,12 +22,5 @@ LoginPage.propTypes = {
 LoginPage.defaultProps = {
 	location: null
 };
-//
-// LoginPage.contextTypes = {
-// 	userInfo: PropTypes.shape({
-// 		name: PropTypes.string
-// 	}),
-// 	updateUserInfo: PropTypes.func
-// };
 
 export default LoginPage;

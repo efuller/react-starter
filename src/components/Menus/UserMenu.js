@@ -17,6 +17,12 @@ const UserNav = props => (
 						<NavLink to="/dashboard" exact activeClassName="link--active">Dashboard</NavLink>
 					</li> : ''
 			}
+			{
+				!props.loggedIn ?
+					<li className="menu__item">
+						<NavLink to="/register" exact activeClassName="link--active">Register</NavLink>
+					</li> : ''
+			}
 			<li className="menu__item">
 				{
 					props.loggedIn ?

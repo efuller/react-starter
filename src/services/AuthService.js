@@ -24,6 +24,21 @@ class AuthService {
 		});
 	}
 
+	static register(data) {
+		return Axios.post(`${AuthService.getAPIURL()}/auth/register`, data).then((res) => {
+			// Extract out the token.
+			const token = res.data.user.token;
+
+			// Save it to local storage.
+			localStorage.setItem('jwtToken', token);
+
+			// Set Authorization header.
+			setAuthorizationToken(token);
+
+			return res.data;
+		});
+	}
+
 	static getUserInfo(token) {
 		setAuthorizationToken(token);
 		return Axios.get(`${AuthService.getAPIURL()}/api/v1/user/me`).then((res) => {
