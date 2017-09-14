@@ -1,10 +1,10 @@
 import React from 'react';
 import './loading.scss';
 
-const LoadingCircular = () => (
+const Loading = () => (
 	<div className="loader">
 		Loading...
 	</div>
 );
 
-export default LoadingCircular;
+export default Loading;
