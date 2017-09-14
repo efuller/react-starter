@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
 	plugins: [
@@ -7,7 +8,7 @@ const config = {
 				NODE_ENV: JSON.stringify('production')
 			}
 		}),
-		new webpack.optimize.UglifyJsPlugin()
+		new webpack.optimize.UglifyJsPlugin(),
 	]
 };
 

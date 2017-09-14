@@ -1,6 +1,7 @@
 const commonPaths = require('./common-paths');
 const ProgressBar = require('progress-bar-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
 
@@ -18,29 +19,29 @@ const config = {
 			},
 			{
 				test: /\.scss/,
-				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'sass-resources-loader',
+							options: {
+								resources: './src/scss/**/*.scss'
+							}
 						}
-					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true
-						}
-					},
-					{
-						loader: 'sass-resources-loader',
-						options: {
-							resources: './src/scss/**/*.scss'
-						}
-					}
-				]
+					]
+				})
 			}
 		]
 	},
@@ -48,7 +49,8 @@ const config = {
 		new ProgressBar(),
 		new HTMLWebpackPlugin({
 			template: 'src/index.html'
-		}) // Builds and injects an HTML file into the dist folder.
+		}), // Builds and injects an HTML file into the dist folder.
+		new ExtractTextPlugin('../dist/main.css')
 	]
 };
 

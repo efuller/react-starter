@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './mesages.scss';
+import './messages.scss';
 
 const GlobalMessage = props => (
 	<div className={`message message--global ${props.type}`}>
