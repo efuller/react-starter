@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Validator from 'validator';
 import AuthService from '../../services/AuthService';
+import GlobalMessage from '../Common/Messages/GlobalMessage';
+import FormFieldMessage from '../Common/Messages/FormFieldMessage';
 
 class LoginForm extends Component {
 	constructor(props) {
@@ -25,7 +27,8 @@ class LoginForm extends Component {
 
 	handleInputChange(e) {
 		this.setState({
-			data: { ...this.state.data, [e.target.name]: e.target.value }
+			data: { ...this.state.data, [e.target.name]: e.target.value },
+			errors: {}
 		});
 	}
 
@@ -65,18 +68,43 @@ class LoginForm extends Component {
 				{loggedIn && (
 					<Redirect to={from || '/dashboard'} />
 				)}
-				{
-					<p>{errors.global}</p>
-				}
+				{errors.global && (
+					<GlobalMessage
+						message={errors.global}
+						type="error"
+					/>
+				)}
 				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="email"> Email
-						<input type="text" id="email" name="email" className="full-width" value={email} onChange={this.handleInputChange} />
-					</label>
-					<p>{errors.email}</p>
-					<label htmlFor="password"> Password
-						<input type="password" id="password" name="password" className="full-width" value={password} onChange={this.handleInputChange} />
-					</label>
-					<p>{errors.password}</p>
+					<div className="form-row">
+						<label htmlFor="email"> Email</label>
+						<input
+							type="text"
+							id="email"
+							name="email"
+							className="full-width"
+							value={email}
+							onChange={this.handleInputChange}
+						/>
+						<FormFieldMessage
+							message={errors.email}
+							type="error"
+						/>
+					</div>
+					<div className="form-row">
+						<label htmlFor="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							className="full-width"
+							value={password}
+							onChange={this.handleInputChange}
+						/>
+						<FormFieldMessage
+							message={errors.password}
+							type="error"
+						/>
+					</div>
 					<input type="submit" value="Login" />
 				</form>
 			</div>
