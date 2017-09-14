@@ -1,0 +1,27 @@
+//--------------------------------------------------------------
+// Messages
+//--------------------------------------------------------------
+
+$color-error: #FFE8E6;
+$color-error-border: #DB2828;
+
+.message--global {
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 20px;
+
+	&.error {
+		color: $color-error-border;
+		background: $color-error;
+		border-color: $color-error-border;
+	}
+}
+
+.message--form {
+	font-size: 14px;
+	margin-top: 3px;
+
+	&.error {
+		color: $color-error-border;
+	}
+}

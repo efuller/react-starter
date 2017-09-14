@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Routes from './routes';
 import Header from './components/Header/Header';
-import Loading from './components/Common/Loading';
+import Loading from './components/Common/utility/Loading';
 
 class App extends Component {
 	constructor(props) {
