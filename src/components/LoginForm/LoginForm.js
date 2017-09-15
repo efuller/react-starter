@@ -5,8 +5,18 @@ import Validator from 'validator';
 import AuthService from '../../services/AuthService';
 import GlobalMessage from '../Common/Messages/GlobalMessage';
 import FormFieldMessage from '../Common/Messages/FormFieldMessage';
+import Form from '../Common/Forms/Form';
+import FormRow from '../Common/Forms/FormRow';
+import FormElement from '../Common/Forms/FormElement';
 
 class LoginForm extends Component {
+	static validate(data) {
+		const errors = {};
+		if (!Validator.isEmail(data.email)) errors.email = 'Invalid Email';
+		if (!data.password) errors.password = 'Cannot be blank.';
+		return errors;
+	}
+
 	constructor(props) {
 		super(props);
 
@@ -22,13 +32,6 @@ class LoginForm extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
-	}
-
-	static validate(data) {
-		const errors = {};
-		if (!Validator.isEmail(data.email)) errors.email = 'Invalid Email';
-		if (!data.password) errors.password = 'Cannot be blank.';
-		return errors;
 	}
 
 	handleInputChange(e) {
@@ -72,10 +75,10 @@ class LoginForm extends Component {
 						type="error"
 					/>
 				)}
-				<form onSubmit={this.handleSubmit}>
-					<div className="form-row">
-						<label htmlFor="email"> Email</label>
-						<input
+				<Form onSubmit={this.handleSubmit} >
+					<FormRow>
+						<FormElement
+							labelText="Email"
 							type="text"
 							id="email"
 							name="email"
@@ -87,12 +90,12 @@ class LoginForm extends Component {
 							message={errors.email}
 							type="error"
 						/>
-					</div>
-					<div className="form-row">
-						<label htmlFor="password">Password</label>
-						<input
-							type="password"
+					</FormRow>
+					<FormRow>
+						<FormElement
+							labelText="Password"
 							id="password"
+							type="password"
 							name="password"
 							className="full-width"
 							value={password}
@@ -102,9 +105,9 @@ class LoginForm extends Component {
 							message={errors.password}
 							type="error"
 						/>
-					</div>
+					</FormRow>
 					<input type="submit" value="Login" />
-				</form>
+				</Form>
 			</div>
 		);
 	}
