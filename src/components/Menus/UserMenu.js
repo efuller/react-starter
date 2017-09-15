@@ -26,7 +26,7 @@ const UserNav = props => (
 			<li className="menu__item">
 				{
 					props.loggedIn ?
-						<button onClick={logout}>Logout</button> :
+						<button className="not-a-button" onClick={logout}>Logout</button> :
 						<NavLink to="/login" exact activeClassName="link--active">Login</NavLink>
 				}
 			</li>

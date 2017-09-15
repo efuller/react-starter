@@ -18,6 +18,7 @@ input[type='submit'] {
 	line-height: 1.2;
 	margin: 0;
 	padding: 15px;
+	transition: background 0.3s;
 
 	&:hover {
 		background-color: #ddd;
@@ -27,4 +28,16 @@ input[type='submit'] {
 	&:focus {
 		background-color: #ddd;
 	} // &:active, &:focus
+
+	&.not-a-button {
+		background-color: transparent;
+		cursor: pointer;
+		outline: none;
+
+		&:hover,
+		&:focus {
+			background: #fff;
+			color: #000;
+		}
+	}
 } // button, input[type="button"], input[type="reset"], input[type="submit"]
