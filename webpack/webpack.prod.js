@@ -44,7 +44,7 @@ const config = {
 			}
 		}),
 		new webpack.optimize.UglifyJsPlugin(),
-		new ExtractTextPlugin('../dist/main.css')
+		new ExtractTextPlugin('main.css')
 	]
 };
 
