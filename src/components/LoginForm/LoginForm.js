@@ -22,7 +22,13 @@ class LoginForm extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.validate = this.validate.bind(this);
+	}
+
+	static validate(data) {
+		const errors = {};
+		if (!Validator.isEmail(data.email)) errors.email = 'Invalid Email';
+		if (!data.password) errors.password = 'Cannot be blank.';
+		return errors;
 	}
 
 	handleInputChange(e) {
@@ -34,7 +40,7 @@ class LoginForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const errors = this.validate(this.state.data);
+		const errors = LoginForm.validate(this.state.data);
 		this.setState({ errors });
 
 		if (Object.keys(errors).length === 0) {
@@ -52,21 +58,13 @@ class LoginForm extends Component {
 		}
 	}
 
-	validate(data) {
-		const errors = {};
-		if (!Validator.isEmail(data.email)) errors.email = 'Invalid Email';
-		if (!data.password) errors.password = 'Cannot be blank.';
-		return errors;
-	}
-
 	render() {
-		const from = this.props.location.state ? this.props.location.state.from.pathname : '/';
 		const { email, password } = this.state.data;
 		const { errors, loggedIn } = this.state;
 		return (
 			<div>
 				{loggedIn && (
-					<Redirect to={from || '/dashboard'} />
+					<Redirect to="/dashboard" />
 				)}
 				{errors.global && (
 					<GlobalMessage
@@ -113,13 +111,6 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-	location: PropTypes.shape({
-		state: PropTypes.shape({
-			from: PropTypes.shape({
-				pathname: PropTypes.string
-			})
-		})
-	}),
 	updateUserInfo: PropTypes.func
 };
 
