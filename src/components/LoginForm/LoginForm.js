@@ -27,6 +27,7 @@ class LoginForm extends Component {
 			},
 			loggedIn: false,
 			userInfo: null,
+			loading: false,
 			errors: {}
 		};
 
@@ -47,6 +48,7 @@ class LoginForm extends Component {
 		this.setState({ errors });
 
 		if (Object.keys(errors).length === 0) {
+			this.setState({ loading: true });
 			AuthService.login(this.state.data)
 				.then((res) => {
 					this.setState({ loggedIn: true, userInfo: res });
@@ -56,14 +58,14 @@ class LoginForm extends Component {
 					});
 				})
 				.catch((err) => {
-					this.setState({ errors: err.response.data.errors });
+					this.setState({ errors: err.response.data.errors, loading: false });
 				});
 		}
 	}
 
 	render() {
 		const { email, password } = this.state.data;
-		const { errors, loggedIn } = this.state;
+		const { errors, loggedIn, loading } = this.state;
 		return (
 			<div>
 				{loggedIn && (
@@ -75,7 +77,7 @@ class LoginForm extends Component {
 						type="error"
 					/>
 				)}
-				<Form onSubmit={this.handleSubmit} >
+				<Form onSubmit={this.handleSubmit} loading={loading}>
 					<FormRow>
 						<FormElement
 							labelText="Email"
