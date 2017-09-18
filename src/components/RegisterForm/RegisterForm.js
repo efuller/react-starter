@@ -5,6 +5,9 @@ import Validator from 'validator';
 import AuthService from '../../services/AuthService';
 import GlobalMessage from '../Common/Messages/GlobalMessage';
 import FormFieldMessage from '../Common/Messages/FormFieldMessage';
+import Form from '../Common/Forms/Form';
+import FormRow from '../Common/Forms/FormRow';
+import FormElement from '../Common/Forms/FormElement';
 
 class RegisterForm extends Component {
 	constructor(props) {
@@ -19,6 +22,7 @@ class RegisterForm extends Component {
 			},
 			loggedIn: false,
 			userInfo: null,
+			loading: false,
 			errors: {}
 		};
 
@@ -39,6 +43,7 @@ class RegisterForm extends Component {
 		const errors = this.validate(this.state.data);
 		this.setState({ errors });
 		if (Object.keys(errors).length === 0) {
+			this.setState({ loading: true });
 			AuthService.register(this.state.data)
 				.then(() => {
 					this.setState({ loggedIn: true });
@@ -48,7 +53,7 @@ class RegisterForm extends Component {
 					});
 				})
 				.catch((err) => {
-					this.setState({ errors: err.response.data.errors });
+					this.setState({ errors: err.response.data.errors, loading: false });
 				});
 		}
 	}
@@ -64,7 +69,7 @@ class RegisterForm extends Component {
 
 	render() {
 		const { firstName, lastName, email, password } = this.state.data;
-		const { errors, loggedIn } = this.state;
+		const { errors, loggedIn, loading } = this.state;
 		return (
 			<div>
 				{loggedIn && (
@@ -76,14 +81,14 @@ class RegisterForm extends Component {
 						type="error"
 					/>
 				)}
-				<form onSubmit={this.handleSubmit}>
-					<div className="form-row">
-						<label htmlFor="email"> First Name</label>
-						<input
-							type="text"
+				<Form onSubmit={this.handleSubmit} loading={loading}>
+					<FormRow>
+						<FormElement
+							labelText="First Name"
 							id="firstName"
-							name="firstName"
+							type="text"
 							className="full-width"
+							name="firstName"
 							value={firstName}
 							onChange={this.handleInputChange}
 						/>
@@ -91,14 +96,14 @@ class RegisterForm extends Component {
 							message={errors.firstName}
 							type="error"
 						/>
-					</div>
-					<div className="form-row">
-						<label htmlFor="email"> Last Name</label>
-						<input
-							type="text"
+					</FormRow>
+					<FormRow>
+						<FormElement
+							labelText="Last Name"
 							id="lastName"
-							name="lastName"
+							type="text"
 							className="full-width"
+							name="lastName"
 							value={lastName}
 							onChange={this.handleInputChange}
 						/>
@@ -106,14 +111,14 @@ class RegisterForm extends Component {
 							message={errors.lastName}
 							type="error"
 						/>
-					</div>
-					<div className="form-row">
-						<label htmlFor="email"> Email</label>
-						<input
-							type="text"
+					</FormRow>
+					<FormRow>
+						<FormElement
+							labelText="Email"
 							id="email"
-							name="email"
+							type="text"
 							className="full-width"
+							name="email"
 							value={email}
 							onChange={this.handleInputChange}
 						/>
@@ -121,14 +126,14 @@ class RegisterForm extends Component {
 							message={errors.email}
 							type="error"
 						/>
-					</div>
-					<div className="form-row">
-						<label htmlFor="password">Password</label>
-						<input
-							type="password"
+					</FormRow>
+					<FormRow>
+						<FormElement
+							labelText="Password"
 							id="password"
-							name="password"
+							type="text"
 							className="full-width"
+							name="password"
 							value={password}
 							onChange={this.handleInputChange}
 						/>
@@ -136,9 +141,9 @@ class RegisterForm extends Component {
 							message={errors.password}
 							type="error"
 						/>
-					</div>
+					</FormRow>
 					<input type="submit" value="Register" />
-				</form>
+				</Form>
 			</div>
 		);
 	}
@@ -150,7 +155,8 @@ RegisterForm.propTypes = {
 
 RegisterForm.defaultProps = {
 	location: {},
-	updateUserInfo: null
+	updateUserInfo: null,
+	loading: false
 };
 
 export default RegisterForm;
